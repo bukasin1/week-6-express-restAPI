@@ -1,0 +1,59 @@
+[
+    {
+        "id": 1,
+        "createdAt": "2021-08-07T21:55:53.757Z",
+        "organization": "net ninja1",
+        "products": [
+            "sweet",
+            "apis"
+        ],
+        "marketValue": "80%",
+        "address": "sangotedo",
+        "ceo": "ck",
+        "country": "Nigeria",
+        "noOfEmployees": 3,
+        "employees": [
+            "kayode odole",
+            "Joseph Omotosho",
+            "Emma Aji"
+        ]
+    },
+    {
+        "id": 2,
+        "createdAt": "2021-08-07T21:55:59.011Z",
+        "organization": "net ninja",
+        "products": [
+            "sweet",
+            "apis"
+        ],
+        "marketValue": "80%",
+        "address": "sangotedo",
+        "ceo": "ck",
+        "country": "Nigeria",
+        "noOfEmployees": 3,
+        "employees": [
+            "kayode odole",
+            "Joseph Omotosho",
+            "Emma Aji"
+        ]
+    },
+    {
+        "id": 3,
+        "createdAt": "2021-08-07T22:21:12.342Z",
+        "organization": "net ninja",
+        "products": [
+            "sweet",
+            "apis"
+        ],
+        "marketValue": "80%",
+        "address": "sangotedo",
+        "ceo": "ck",
+        "country": "Nigeria",
+        "noOfEmployees": 3,
+        "employees": [
+            "kayode odole",
+            "Joseph Omotosho",
+            "Emma Aji"
+        ]
+    }
+]
