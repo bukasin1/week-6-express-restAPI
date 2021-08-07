@@ -4,7 +4,8 @@
  * Module dependencies.
  */
 
-var app = require('../app');
+var app = require('../lib/app');
+// import { app } from '../lib/app';
 var debug = require('debug')('week-6-task:server');
 var http = require('http');
 
