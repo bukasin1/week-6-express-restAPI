@@ -25,6 +25,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/company', indexRouter);
+app.use("*", (req,res)=>{
+  res.status(200).json({
+    status: 'success',
+     msg: "please use the /company route"
+  })
+})
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
