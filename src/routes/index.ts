@@ -1,6 +1,6 @@
 // const express = require('express');
 import express from 'express';
-import { getOrganizations, getOrganization, createOrganization, updateOrganization, deleteOrganization, deleteOrganizations } from '../controllers/organizationsController'
+import { getOrganizations, getOrganization, createOrganization, updateOrganization, deleteOrganization, deleteOrganizations, getPageNotFound } from '../controllers/organizationsController'
 const router = express.Router();
 
 // import express from 'express';
@@ -15,5 +15,6 @@ router.post('/', createOrganization);
 router.put('/:id', updateOrganization);
 router.delete('/', deleteOrganizations);
 router.delete('/:id', deleteOrganization);
+router.get('/*', getPageNotFound);
 
 module.exports = router;

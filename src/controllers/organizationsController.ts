@@ -3,6 +3,14 @@ const Organizations = require('../model/organization')
 
 // console.log(Organizations.getAll())
 
+async function getPageNotFound(req: Request, res: Response) {
+    try{
+        res.status(404).end('Page Not found');
+    }catch (err) {
+        console.log(err)
+    }
+}
+
 async function getOrganizations(req: Request, res: Response) {
     try{
         const organizations = await Organizations.getAll()
@@ -145,4 +153,4 @@ async function deleteOrganizations(req: any, res: any) {
     }
 }
 
-export { getOrganizations, getOrganization, createOrganization, updateOrganization, deleteOrganization, deleteOrganizations }
+export { getOrganizations, getOrganization, createOrganization, updateOrganization, deleteOrganization, deleteOrganizations, getPageNotFound }
