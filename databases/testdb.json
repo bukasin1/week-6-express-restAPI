@@ -1,8 +1,8 @@
 [
     {
         "id": 1,
-        "createdAt": "2021-08-07T21:55:53.757Z",
-        "organization": "net ninja1",
+        "createdAt": "2021-08-10T16:47:01.114Z",
+        "organization": "test ninja1",
         "products": [
             "sweet",
             "apis"
@@ -20,8 +20,8 @@
     },
     {
         "id": 2,
-        "createdAt": "2021-08-07T21:55:59.011Z",
-        "organization": "net ninja",
+        "createdAt": "2021-08-10T16:47:08.495Z",
+        "organization": "net ninja1",
         "products": [
             "sweet",
             "apis"
@@ -39,8 +39,8 @@
     },
     {
         "id": 3,
-        "createdAt": "2021-08-07T22:21:12.342Z",
-        "organization": "net ninja",
+        "createdAt": "2021-08-10T16:47:15.046Z",
+        "organization": "net ninja test",
         "products": [
             "sweet",
             "apis"

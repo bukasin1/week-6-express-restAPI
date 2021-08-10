@@ -1,26 +1,40 @@
-import app  from '../src/app';
-// const app = require('../src/app');
+// import app  from '../src/app';
+const app = require('../src/app');
 // const request = require('supertest');
 import request from 'supertest';
 import { constants } from 'buffer';
 
+let organizationsModel: any;
+
+try{
+    organizationsModel = require('../databases/testdb.json')
+}catch(err){
+    console.log(err)
+}
+
 describe('Test Get requests' , () => {
-    // it('Should return status 404 if no database found' , async() => {
-    //     const res = await request(app).get('/')
-    //     expect(res.statusCode).toEqual(404)
-    // })
+    it('Should return status 404 if no database found' , async() => {
+        if(organizationsModel === undefined || organizationsModel.length < 1){
+            const res = await request(app).get('/company')
+            expect(res.statusCode).toEqual(404)
+        }
+    })
     test('Should get all companies and return status 200' , async() => {
-        const res = await request(app).get('/')
-        expect(res.statusCode).toEqual(200)
+        if(organizationsModel.length > 1){
+            const res = await request(app).get('/company')
+            expect(res.statusCode).toEqual(200)
+        }
     })
     test('Should get company with valid id and return status 200', async() => {
-        const companyId = 1
-        const res = await request(app).get(`/${companyId}`)
-        expect(res.statusCode).toEqual(200)
+        if(organizationsModel.length > 1){
+            const companyId = 1
+            const res = await request(app).get(`/company/${companyId}`)
+            expect(res.statusCode).toEqual(200)
+        }
     })
     test('Should return status 404 for invalid id passed', async() => {
         const invalidId = 'wrong id'
-        const res = await request(app).get(`/${invalidId}`)
+        const res = await request(app).get(`/company/${invalidId}`)
         expect(res.statusCode).toEqual(404)
     })
 })
@@ -43,7 +57,7 @@ describe('Test Post requests' , () => {
              "chan",
              "bruce lee"
             ] }
-        const res = await request(app).post('/').send(detailsObj)
+        const res = await request(app).post('/company').send(detailsObj)
         expect(res.statusCode).toEqual(201)
     })
 })
@@ -67,7 +81,7 @@ describe('Test Put requests' , () => {
              "chan",
              "bruce lee"
             ] }
-        const res = await request(app).put(`/${companyId}`).send(detailsObj)
+        const res = await request(app).put(`/company/${companyId}`).send(detailsObj)
         expect(res.statusCode).toEqual(201)
     })
     test('Should return 404 for a wrong id', async() => {
@@ -88,7 +102,7 @@ describe('Test Put requests' , () => {
              "chan",
              "bruce lee"
             ] }
-        const res = await request(app).put(`/${invalidId}`).send(detailsObj)
+        const res = await request(app).put(`/company/${invalidId}`).send(detailsObj)
         expect(res.statusCode).toEqual(404)
     })
 })
@@ -96,16 +110,18 @@ describe('Test Put requests' , () => {
 describe('Test Delete requests' , () => {
     test('Should return status 200 for succesfully delete valid id' , async() => {
         const companyId = 1
-        const res = await request(app).delete(`/${companyId}`)
+        const res = await request(app).delete(`/company/${companyId}`)
         expect(res.statusCode).toEqual(200)
     })
     test('Should return status 404 for invalid id passed' , async() => {
         const companyId = '1'
-        const res = await request(app).delete(`/${companyId}`)
+        const res = await request(app).delete(`/company/${companyId}`)
         expect(res.statusCode).toEqual(404)
     })
     test('Should return status 200 for succesfully deleting all database contents' , async() => {
-        const res = await request(app).delete('/')
-        expect(res.statusCode).toEqual(200)
+        if(organizationsModel.length > 1){
+            const res = await request(app).delete('/company')
+            expect(res.statusCode).toEqual(200)
+        }
     })
 })

@@ -18,3 +18,5 @@ router.delete('/:id', deleteOrganization);
 router.get('/*', getPageNotFound);
 
 module.exports = router;
+
+// export default router

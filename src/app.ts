@@ -50,4 +50,4 @@ app.use(function(err: any, req: Request, res: Response, next: Function) {
 });
 
 module.exports = app;
-export default app;
+// export default app;
