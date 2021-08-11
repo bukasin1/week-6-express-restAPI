@@ -1,6 +1,14 @@
 const fs = require('fs')
 
-let organizationsModel: any;
+interface dataObj {
+    [key: string] : string | number | string[] | Date
+    // [email: string]: string | number | string[]
+}
+type obj  = {
+  [email: string]: string | number | string[]
+}
+
+let organizationsModel: dataObj[];
 
 try{
     organizationsModel = require('../../databases/testdb.json')
@@ -15,10 +23,10 @@ function getAll(){
 }
 
 function getById(id: number){
-    let organization: any
+    let organization: dataObj | undefined
     return new Promise((resolve, reject) => {
         if(organizationsModel){
-            organization = organizationsModel.find((organization: any) => organization['id'] === id)
+            organization = organizationsModel.find((organization: dataObj) => organization['id'] === id)
             organization
             resolve(organization)
         }else{
@@ -28,17 +36,17 @@ function getById(id: number){
     })
 }
 
-function create(organization: any){
+function create(organization: dataObj){
     return new Promise((resolve, reject) => {
         const date = new Date()
-        let newOrgan
+        let newOrgan: dataObj
         if(!organizationsModel || organizationsModel.length < 1){
             const id = 1;
             newOrgan = {id: id, createdAt: date, ...organization}
             organizationsModel = [newOrgan]
         }else{
             const lastIndex = organizationsModel.length - 1
-            const id = organizationsModel[lastIndex].id + 1
+            const id = organizationsModel[lastIndex].id as number + 1
             newOrgan = {id: id, createdAt: date, ...organization}
             organizationsModel.push(newOrgan)
         }
@@ -49,11 +57,11 @@ function create(organization: any){
     })
 }
 
-function update(id: number, newOrganDetails: any){
+function update(id: number, newOrganDetails: dataObj){
     return new Promise((resolve, reject) => {
         const date = new Date()
         let newOrgan
-        const index = organizationsModel.findIndex((organization: any) => organization['id'] === id)
+        const index = organizationsModel.findIndex((organization: dataObj) => organization['id'] === id)
         const createdDate = organizationsModel[index].createdAt
         organizationsModel[index] = {id: id, createdAt: createdDate, updatedAt: date, ...newOrganDetails}
         const writeStream = fs.createWriteStream('./databases/testdb.json')
@@ -65,7 +73,7 @@ function update(id: number, newOrganDetails: any){
 
 function deleteById(id: number){
     return new Promise((resolve, reject) => {
-        organizationsModel = organizationsModel.filter((o: any) => o['id'] !== id)
+        organizationsModel = organizationsModel.filter((o: dataObj) => o['id'] !== id)
         const writeStream = fs.createWriteStream('./databases/testdb.json')
         writeStream.write(JSON.stringify(organizationsModel, null, 4));
         writeStream.end()
